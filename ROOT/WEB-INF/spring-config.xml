@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                          http://www.springframework.org/schema/context 
+                          http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                          http://www.springframework.org/schema/mvc
+                          http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd ">
+                          
+  <context:component-scan base-package="com.ls.controller"></context:component-scan>
+  <bean id="locationDao" class="com.ls.daoImpl.LocationDaoImpl"/>
+  <bean id="employeeDao" class="com.ls.daoImpl.EmployeeDaoImpl"/>
+  
+  
+  <bean id="sessionfactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceBean"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+		<value>com.ls.pojo.Location</value>
+		</property>
+	  </bean>
+  
+  <bean id="dataSourceBean"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver"></property>
+		<!-- <property name="url" value="jdbc:postgresql://192.168.1.12:5432/ONEEFFICIENCY"></property>
+		<property name="username" value="ftgrealtor"></property>
+		<property name="password" value="ftgrealtor"></property> -->
+		<property name="url" value="jdbc:postgresql://localhost:5432/MY_WORK"></property>
+		<property name="username" value="postgres"></property>
+		<property name="password" value="ganesh"></property>
+		
+	</bean>
+    <bean id="viewResolver"
+        class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass"
+            value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>  
+</beans>
+  
+  
