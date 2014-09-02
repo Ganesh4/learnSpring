@@ -10,7 +10,7 @@ public class Home {
 	@RequestMapping("/home")
 	public ModelAndView home()
 	{
-		return new ModelAndView("home","message","Ganesh");
+	    return new ModelAndView("home","message","Ganesh");
 	}
 
 	
