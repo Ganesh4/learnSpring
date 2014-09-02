@@ -1,7 +1,6 @@
 package com.ls.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,13 +71,9 @@ public class LocationCtrl {
 	//DELETE
 	@RequestMapping("/delete")
 	public ModelAndView deleteLoc(@RequestParam("id")Long id){
-		
 		locationDao.deleteDataById(id);	
 		List<Location> list=null;
 		list=locationDao.getAll();
 		return new ModelAndView("listall","list",list);
-
-	
-		
 	}
 }
